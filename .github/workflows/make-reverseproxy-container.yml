@@ -1,0 +1,18 @@
+name: reverseproxy docker container
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker images
+      run: sudo docker build  ~/actions-runner/_work/opdracht2/opdracht2/reverseproxy/ -t reverseproxy:1.5
