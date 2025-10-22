@@ -1,0 +1,46 @@
+services:
+  webserver:
+    image: nginx-webserver:1.2
+    hostname: webserver
+    container_name: webserver
+    networks:
+      - mynet
+
+  app:
+    image: my-app:1.1
+    hostname: app
+    container_name: app
+    networks:
+      - mynet
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  reverseproxy:
+    image: reverseproxy:1.5
+    container_name: reverseproxy
+    ports:
+      - "${PORTHTTP}:80"
+      - "${PORTHTTPS}:443"
+    environment:
+      - SERVICE_NAME=${SERVICE_NAME}
+      - DEBUG=${DEBUG}
+    networks:
+      - mynet
+    healthcheck:
+      test: ["CMD", "curl", "-f","--insecure", "https://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+networks:
+  mynet:
+    name: mynet
+    driver: bridge
+
+
+
+
