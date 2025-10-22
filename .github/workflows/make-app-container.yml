@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker images
-      run: docker build  ~/actions-runner/_work/opdracht2/opdracht2/app/ -t my-app:1.1
+      run: sudo docker build  ~/actions-runner/_work/opdracht2/opdracht2/app/ -t my-app:1.1
