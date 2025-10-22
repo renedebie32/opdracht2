@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker images
-      run: sudo ~/actions-runner/_work/opdracht2/opdracht2/container/docker compose up
+      run: sudo ~/actions-runner/_work/opdracht2/opdracht2/containers/docker compose up
