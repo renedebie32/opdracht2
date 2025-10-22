@@ -16,5 +16,4 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build the Docker images
       run: docker build  ./opdracht2/app/ -t my-app:1.1
-      run: docker build  ./opdracht2/webserver/ -t nginx-webserver:1.2
-      run: docker build  ./opdracht2/reverseproxy/ -t reverseproxy:1.5
+
