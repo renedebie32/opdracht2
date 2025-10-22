@@ -1,0 +1,24 @@
+services:
+  webserver:
+    image: nginx-webserver:1.1
+    hostname: webserver
+    container_name: webserver
+    networks:
+      - mynet
+  reverseproxy:
+    image: reverseproxy:1.2
+    container_name: reverseproxy
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - mynet
+
+networks:
+  mynet:
+    name: mynet
+    driver: bridge
+
+
+
+

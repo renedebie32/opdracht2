@@ -1,0 +1,14 @@
+FROM debian:latest
+USER root
+RUN apt update -y
+RUN apt upgrade -y
+RUN apt install nginx -y
+RUN apt install curl -y
+COPY nginx.crt /etc/nginx/ssl/nginx.crt
+COPY nginx.key /etc/nginx/ssl/nginx.key
+COPY index.html /var/www/html/index.html
+COPY default /etc/nginx/sites-enabled/default
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD curl --insecure -f https://localhost/ || exit 1
+EXPOSE 443
+CMD ["nginx", "-g", "daemon off;"]
