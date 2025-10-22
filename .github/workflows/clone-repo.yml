@@ -1,0 +1,15 @@
+name: Clone Repo Locally
+on:
+  workflow_dispatch:
+
+jobs:
+  clone:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout current repo
+      uses: actions/checkout@v4
+
+    - name: Clone myrepo
+      run: |
+        git clone https://github.com/renedebie32/opdracht2.git
